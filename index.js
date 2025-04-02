@@ -1,24 +1,37 @@
 // Assignment 5
 
+
+
+
 const account = {
     accountName: "Sanne Johansson",
     balance: 10000,
     getBalance: function () {
-    
+        return `You have ${this.balance} kronor on your account.`;
     },
-    deposit: function () {
-
+    deposit: function (depAmount) {
+        if (depAmount > 0) {
+        let sum = account.balance + depAmount;  
+        return sum;
+        }
     },
-    withdrawal: function () {
-
+    withdrawal: function (witAmount) {
+        if (witAmount > account.balance) {
+            return alert(`Insufficient Funds.`); 
+        } else if (witAmount > 0) {
+            let sum = account.balance - witAmount;  
+            return sum;
+            }
     },
     getAccountName: function () {
+        return `This account belongs to ${this.accountName}.`;
 
-    }, 
-    accountError: function () {
-
+    },
+    accountError: function (error) {
+    
     }
 }
+
 
 
 function atm() {
@@ -31,13 +44,23 @@ function atm() {
 
     switch (message) {
         case 1:
-            alert(`You have ${account.getBalance} kr on your account`);
+            alert(account.getBalance());
+            break;
         case 2:
+            let depAmount = parseFloat(prompt("Please enter the amount you want to deposit"));
+            alert (`Your balance is now ${account.deposit(depAmount)} kronor.`); 
+            break;
         case 3:
+            let witAmount = parseFloat(prompt("Please enter the amount you want to withdraw"));
+            alert (`Your balance is now ${account.withdrawal(witAmount)} kronor.`);
+            break;
         case 4:
-            alert(`This account belongs to ${account.accountName}.`);
+            alert(account.getAccountName());
+            break;
         case 5: 
+            alert(account.accountError(error)); 
+            break; 
     }
 }
 
-atm()
+atm(); 
