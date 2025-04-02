@@ -27,8 +27,8 @@ const account = {
         return `This account belongs to ${this.accountName}.`;
 
     },
-    accountError: function (error) {
-    
+    accountError: function () {
+        return `Error. Please enter a number between 1-5.`; 
     }
 }
 
@@ -48,18 +48,19 @@ function atm() {
             break;
         case 2:
             let depAmount = parseFloat(prompt("Please enter the amount you want to deposit"));
-            alert (`Your balance is now ${account.deposit(depAmount)} kronor.`); 
+            alert (`Deposit succeeded. Your balance is now ${account.deposit(depAmount)} kronor.`); 
             break;
         case 3:
             let witAmount = parseFloat(prompt("Please enter the amount you want to withdraw"));
-            alert (`Your balance is now ${account.withdrawal(witAmount)} kronor.`);
+            alert (`Withdrawal suceeded. Your balance is now ${account.withdrawal(witAmount)} kronor.`);
             break;
         case 4:
             alert(account.getAccountName());
             break;
         case 5: 
-            alert(account.accountError(error)); 
-            break; 
+            alert("Welcome back!");
+        default: 
+            alert(account.accountError());
     }
 }
 
