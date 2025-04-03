@@ -2,7 +2,6 @@
 
 
 
-
 const account = {
     accountName: "Sanne Johansson",
     balance: 10000,
@@ -10,25 +9,31 @@ const account = {
         return `You have ${this.balance} kronor on your account.`;
     },
     deposit: function (depAmount) {
-        if (depAmount > 0) {
-        let sum = account.balance + depAmount;  
-        return sum;
+        let sum = account.balance + depAmount; 
+        if (sum >= 0) {
+            return sum; 
+        } if (sum <= 0) {
+            return alert(`Error. \nPlease enter a valid number.`);
+        } else if (sum != [0-9]) {
+            return alert(`Error. \nPlease enter a valid number.`);
         }
     },
     withdrawal: function (witAmount) {
-        if (witAmount > account.balance) {
-            return alert(`Insufficient Funds.`); 
-        } else if (witAmount > 0) {
-            let sum = account.balance - witAmount;  
+        let sum = account.balance - witAmount; 
+        if (sum >= 0) {
             return sum;
-            }
+        } else if (witAmount > account.balance) {
+            return alert(`Insufficient Funds.`); 
+        } else if (sum != [0-9]) {
+            return alert(`Error. \nPlese enter a number`); 
+        }
     },
     getAccountName: function () {
         return `This account belongs to ${this.accountName}.`;
 
     },
     accountError: function () {
-        return `Error. Please enter a number between 1-5.`; 
+        return `Error. \nPlease enter a number between 1-5.`; 
     }
 }
 
@@ -37,7 +42,7 @@ const account = {
 function atm() {
     const message = parseFloat (
         prompt(
-            "Select a choice 1.) See balance 2.) Make a deposit 3.) Make a withdrawal 4.) Get account name 5.) Exit"
+            "Select a choice \n1. See balance \n2. Make a deposit \n3. Make a withdrawal \n4. Get account name \n5. Exit"
         )
     );
     
@@ -48,20 +53,22 @@ function atm() {
             break;
         case 2:
             let depAmount = parseFloat(prompt("Please enter the amount you want to deposit"));
-            alert (`Deposit succeeded. Your balance is now ${account.deposit(depAmount)} kronor.`); 
+            alert (`Deposit succeeded. \nYour balance is now ${account.deposit(depAmount)} kronor.`);
+           
             break;
         case 3:
             let witAmount = parseFloat(prompt("Please enter the amount you want to withdraw"));
-            alert (`Withdrawal suceeded. Your balance is now ${account.withdrawal(witAmount)} kronor.`);
+            alert (`Withdrawal suceeded. \nYour balance is now ${account.withdrawal(witAmount)} kronor.`);
             break;
         case 4:
             alert(account.getAccountName());
             break;
         case 5: 
-            alert("Welcome back!");
+            alert("See you next time!");
+            break;
         default: 
             alert(account.accountError());
     }
 }
 
-atm(); 
+atm();
