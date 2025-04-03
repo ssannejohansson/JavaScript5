@@ -1,7 +1,6 @@
 // Assignment 5
 
 
-
 const account = {
     accountName: "Sanne Johansson",
     balance: 10000,
@@ -11,9 +10,7 @@ const account = {
     deposit: function (depAmount) {
         let sum = account.balance + depAmount; 
         if (sum >= 0) {
-            return sum; 
-        } if (sum <= 0) {
-            return alert(`Error. \nPlease enter a valid number.`);
+            return alert (`Deposit succeeded. \nYour balance is now ${sum} kronor.`); 
         } else if (sum != [0-9]) {
             return alert(`Error. \nPlease enter a valid number.`);
         }
@@ -21,11 +18,11 @@ const account = {
     withdrawal: function (witAmount) {
         let sum = account.balance - witAmount; 
         if (sum >= 0) {
-            return sum;
+            return alert (`Withdrawal succeeded. \nYour balance is now ${sum} kronor.`);
         } else if (witAmount > account.balance) {
             return alert(`Insufficient Funds.`); 
         } else if (sum != [0-9]) {
-            return alert(`Error. \nPlese enter a number`); 
+            return alert(`Error. \nPlease enter a number`); 
         }
     },
     getAccountName: function () {
@@ -53,12 +50,11 @@ function atm() {
             break;
         case 2:
             let depAmount = parseFloat(prompt("Please enter the amount you want to deposit"));
-            alert (`Deposit succeeded. \nYour balance is now ${account.deposit(depAmount)} kronor.`);
-           
+            return (account.deposit(depAmount)); 
             break;
         case 3:
             let witAmount = parseFloat(prompt("Please enter the amount you want to withdraw"));
-            alert (`Withdrawal suceeded. \nYour balance is now ${account.withdrawal(witAmount)} kronor.`);
+            return (account.withdrawal(witAmount));
             break;
         case 4:
             alert(account.getAccountName());
